@@ -2,6 +2,22 @@
 
 A personal finance management application that helps track expenses, manage budgets, and provides AI-powered spending insights.
 
+
+## Screenshots
+
+### Login Page
+![Login](./public/login.png)
+
+### Dashboard
+![Dashboard](./public/dashobard.png)
+
+### Analytics
+![Analytics](./public/analytic.png)
+
+### AI Advisor
+![AI Advisor](./public/ai.png)
+
+
 ## Overview
 
 This project is organized as a monorepo with separate frontend and backend applications:
@@ -286,6 +302,8 @@ Backend tests:
 cd apps/api
 pytest tests/
 ```
+
+
 
 ## Documentation
 
