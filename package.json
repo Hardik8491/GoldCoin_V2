@@ -1,0 +1,48 @@
+﻿{
+  "name": "goldcoin-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "GoldCoin - Personal finance management application",
+"scripts": {
+  "dev": "concurrently \"npm run dev:web\" \"npm run dev:api\"",
+  "dev:web": "cd apps/web && npm run dev",
+  "dev:api": "cd apps/api && uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+  "build": "npm run build:web",
+  "build:web": "cd apps/web && npm run build",
+  "start": "concurrently \"npm run start:web\" \"npm run start:api\"",
+  "start:web": "cd apps/web && npm start",
+  "start:api": "cd apps/api && uvicorn main:app --host 0.0.0.0 --port 8000",
+  "test": "npm run test:web && npm run test:api",
+  "test:web": "cd apps/web && npm run test",
+  "test:api": "cd apps/api && pytest",
+  "lint": "cd apps/web && npm run lint",
+  "typecheck": "cd apps/web && npx tsc --noEmit",
+  "install:all": "cd apps/web && npm install && cd ../../apps/api && pip install -r requirements.txt",
+  "install:web": "cd apps/web && npm install",
+  "install:api": "cd apps/api && pip install -r requirements.txt",
+  "clean": "rd /s /q apps\\web\\.next apps\\web\\node_modules node_modules 2>nul & python -c \"import shutil; shutil.rmtree('apps/api/__pycache__', ignore_errors=True)\"",
+  "docker:build": "docker-compose build",
+  "docker:up": "docker-compose up -d",
+  "docker:down": "docker-compose down",
+  "docker:logs": "docker-compose logs -f"
+},
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0",
+    "python": ">=3.11"
+  },
+  "keywords": [
+    "finance",
+    "ai",
+    "nextjs",
+    "fastapi",
+    "typescript",
+    "python",
+    "monorepo"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

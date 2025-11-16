@@ -1,0 +1,33 @@
+# Celery worker deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: finance-celery-worker
+  namespace: production
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: finance-celery-worker
+  template:
+    metadata:
+      labels:
+        app: finance-celery-worker
+    spec:
+      containers:
+      - name: celery-worker
+        image: goldcoin:latest
+        command: ["celery", "-A", "celery_tasks", "worker", "--loglevel=info"]
+        env:
+        - name: CELERY_BROKER_URL
+          valueFrom:
+            secretKeyRef:
+              name: redis-secret
+              key: url
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
